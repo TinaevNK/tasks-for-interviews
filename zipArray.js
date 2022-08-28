@@ -1,5 +1,4 @@
 const data = [3, 2, 1, 5, 6, -1, 10]; // => -1,1-3,5-6,10
-console.log(data.sort((a, b) => a - b)) // -1, 1, 2, 3, 5, 6, 10
 
 const zipArr = arr => {
     const result = arr
@@ -18,4 +17,3 @@ const zipArr = arr => {
   }
 
 console.log(zipArr(data));
-
