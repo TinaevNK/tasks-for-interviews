@@ -37,19 +37,43 @@ const compress = (list) => {
       if (!index) return [item];
       const isNext = item === arr[index - 1] + 1;
       if (!isNext) {
-        acc.length>1 ? rez.push(`${acc[0]}-${acc[acc.length-1]}`) : rez.push(`${acc[0]}`)
-        acc = [item]
+        acc.length > 1
+          ? rez.push(`${acc[0]}-${acc[acc.length - 1]}`)
+          : rez.push(`${acc[0]}`);
+        acc = [item];
         return acc;
       } else {
         acc.push(item);
         return acc;
       }
     }, []);
-  result.length>1 ? rez.push(`${result[0]}-${result[result.length-1]}`) : rez.push(`${result[0]}`)
-  return rez.join(',');
+  result.length > 1
+    ? rez.push(`${result[0]}-${result[result.length - 1]}`)
+    : rez.push(`${result[0]}`);
+  return rez.join(",");
 };
 
 console.log(compress([1, 4, 5, 2, 3, 9, 8, 11, 0])); // '0-5,8-9,11'
 console.log(compress([1, 4, 3, 2])); // '1-4'
 console.log(compress([1, 4])); // '1,4'
 console.log(compress([1, 2])); // '1-2'
+
+const ziping = (arr) => {
+  let rs = [];
+  let start = (end = null);
+
+  arr.sort((a, b) => a - b);
+  for (let i = 0; i < arr.length; ++i) {
+    if (start === null) start = arr[i];
+
+    if (arr[i] + 1 === arr[i + 1]) end = arr[i + 1];
+    else {
+      rs.push(start !== null && end ? `${start}-${end}` : start);
+      start = end = null;
+    }
+  }
+
+  return rs.join(" => ");
+};
+
+console.log(ziping(data));
